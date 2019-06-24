@@ -34,7 +34,7 @@ namespace :sentry do
       require 'json'
 
       head_revision = fetch(:current_revision) || `git rev-parse HEAD`.strip
-      prev_revision = fetch(:previous_revision) || `git rev-parse #{fetch(:current_revision)}^`.strip
+      prev_revision = fetch(:previous_revision) || `git rev-parse #{head_revision}^`.strip
 
       sentry_host = ENV['SENTRY_HOST'] || fetch(:sentry_host, 'https://sentry.io')
       organization_slug = fetch(:sentry_organization) || fetch(:application)
